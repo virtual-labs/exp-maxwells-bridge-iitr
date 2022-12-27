@@ -1,39 +1,5 @@
-{
-  "version": 2.0,
-  "questions": [
-    {
-      "question": "This is a Sample Question 1?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "a",
-      "difficulty": "beginner"
-    },
-    {
-      "question": "This is a Sample Question 2?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "c",
-      "difficulty": "beginner"
-    }
-  ]
-}
+[{"question":"Maxwell inductance capacitance bridge can be used for _________.","answers":{"a":"measurement of inductance","b":"measurement of capacitance and inductance","c":"measurement of resistance","d":"measurement of voltage and current"},"correctAnswer":"a"},
+{"question":"Balance equation for computing the unknown resistance is?","answers":{"a":"Rₓ = R\u2082/R\u2081","b":"R\u2093 = R\u2082 R\u2083/R\u2081","c":"R\u2093 = R\u2083/R\u2081","d":"R\u2093 = 1/R\u2081"},"correctAnswer":"b"},
+{"question":"Balance equation for computing the value of the unknown inductance is?","answers":{"a":"L\u2093 = R\u2082 R\u2083","b":"L\u2093 = R\u2082 C\u2081","c":"L\u2093 = R\u2082 R\u2083 C\u2081","d":"L\u2093 = R\u2083 C\u2081"},"correctAnswer":"c"},
+{"question":"Quality factor of the circuit is given by _________.","answers":{"a":"Q = ωC\u2081","b":"Q = ωR\u2081","c":"Q = ω","d":"Q = ωR\u2081 C\u2081"},"correctAnswer":"d"},
+{"question":"What is the significance of capacitors in a Maxwell bridge?","answers":{"a":"they are used to block dc","b":"they are used to block ac","c":"they are cheap","d":"they are expensive"},"correctAnswer":"c"}]
