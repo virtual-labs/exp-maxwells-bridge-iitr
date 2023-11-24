@@ -1,8 +1,8 @@
 [{"question":"The bridge balance equation can be written in ___________.","answers":{"a":"impedance form","b":"resistance form","c":"conductance form","d":"admittance form"},"correctAnswer":"d"},
 {"question":"Maxwell inductance capacitance bridge can be used for __________","answers":{"a":"measurement of inductance","b":"measurement of capacitance and inductance","c":"measurement of resistance","d":"measurement of voltage and current"},"correctAnswer":"a"},
-{"question":"Standard inductor provides rated inductance directly.","answers":{"a":"True","b":"False","c":"All of the above","d":"None of the above"},"correctAnswer":"b"},
-{"question":"Standard inductor requires no shielding.","answers":{"a":"True","b":"False","c":"All of the above","d":"None of the above"},"correctAnswer":"b"},
-{"question":"What is the significance of capacitors in a Maxwell bridge?","answers":{"a":"they are used to block dc","b":"they are used to block ac","c":"they are cheap","d":"they are expensive"},"correctAnswer":"c"}]
+{"question":"Standard inductor provides rated inductance directly.","answers":{"a":"True","b":"False"},"correctAnswer":"b"},
+{"question":"Standard inductor requires no shielding.","answers":{"a":"True","b":"False"},"correctAnswer":"b"},
+{"question":"Maxwell bridge can be used for measurement of inductance with?","answers":{"a":"High Q factor","b":"Very low Q factor","c":"Medium Q factor","d":"None of the above"},"correctAnswer":"c"}]
 
 
 

@@ -1,5 +1,8 @@
-### Introduction
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A Maxwell bridge is a modification to a Wheatstone bridge used to measure an unknown inductance (usually of low Q value) in terms of calibrated resistance and inductance or resistance and capacitance. When the calibrated components are a parallel resistor and capacitor, the bridge is known as a Maxwell-Wien bridge. It is named for James C. Maxwell, who first described it in 1873.  
+## Introduction
+
+<div style="text-align: justify; font-size: 18px;font-family: 'Nunito Sans',sans-serif;">
+A Maxwell bridge is a modification to a Wheatstone bridge used to measure an unknown inductance (usually of low Q value) in terms of calibrated resistance and inductance or resistance and capacitance. When the calibrated components are a parallel resistor and capacitor, the bridge is known as a Maxwell-Wien bridge. It is named for James C. Maxwell, who first described it in 1873.<br><br> 
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It uses the principle that the positive phase angle of an inductive impedance can be compensated by the negative phase angle of a capacitive impedance when put in the opposite arm and the circuit is at resonance; i.e., no potential difference across the detector (an AC voltmeter or ammeter)) and hence no current flowing through it. The unknown inductance then becomes known in terms of this capacitance.<br>
 
 <center> 
@@ -10,20 +13,123 @@
 
 </center>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;With reference to the picture, in a typical application R<sub>1</sub> and R<sub>4</sub> are known fixed entities, and R<sub>2</sub> and  C<sub>2</sub> are known variable entities. R<sub>2</sub> and  C<sub>2</sub> are adjusted until the bridge is balanced.
+With reference to the picture, in a typical application R<sub>1</sub> and R<sub>4</sub> are known fixed entities, and R<sub>2</sub> and  C<sub>2</sub> are known variable entities. R<sub>2</sub> and  C<sub>2</sub> are adjusted until the bridge is balanced. R<sub>3</sub> and  L<sub>3</sub> can then be calculated based on the values of the other components
+
+### Types of Maxwell’s Bridge
+Two methods are used for determining the self-inductance of the circuit. They are
+
+1. Maxwell’s Inductance Bridge
+2. Maxwell’s inductance Capacitance Bridge
+
+### Maxwell’s Inductance Bridge
+In such type of bridges, the value of unknown resistance is determined by comparing it with the known value of the standard self-inductance. The connection diagram for the balance Maxwell bridge is shown in the figure below.
+
+<center> 
+
+![circuit](images/circuit2.png)
+
+**Fig. 2 Maxwell Inductance Bridge**
+
+</center>
+
+Where, L1 – Unknown inductance of resistance R1.<br>
+L2 – Variable inductance of fixed resistance r2.<br>
+R2 – Variable resistance connected in series with inductor L2.<br>
+R3, R4 – Known non-inductance resistance.<br>
+
+At balance,
+
+<center>
+
+$L_1 = \frac{R3}{R4}L2$
+
+</center>
+
+<center>
+
+$R1 = \frac{R3}{R4}(R2+r2)$
+
+</center>
+
+The value of the R3 and R4 resistance varies from 10 to 1000 ohms with the help of the resistance box. Sometimes for balancing the bridge, the additional resistance is also inserted into the circuit. The phasor diagram of Maxwell’s inductance bridge is shown in the figure below.
+
+<center> 
+
+![circuit](images/circuit3.jpg)
+
+**Fig. 3 Phasor Diagram of Maxwell Inductance Bridge**
+
+</center>
+
+### Maxwell’s Inductance Capacitance Bridge
+In this type of bridge, the unknown resistance is measured with the help of the standard variable capacitance. The connection diagram of the Maxwell Bridge is shown in the figure below.
+
+<center> 
+
+![circuit](images/circuit4.png)
+
+**Fig. 4 Maxwell Inductance Capacitance Bridge**
+
+</center>
+
+For balance condition, 
+
+<center>
+
+$(R1 + jωL_1) \left (\frac{R4}{1 + jωC_4R_4} \right ) = R2R3$
+
+</center>
+
+<center>
+
+$R_1R_4 = jωL_1R_4 = R_2R_3 + jωC_4R_4R_2R_3$
+
+</center>
+
+By separating the real and imaginary equation we get,
+
+<center>
+
+$R_1 = \frac{R_2R_3}{R_4}$
+
+</center>
+
+<center>
+
+$L_1 = R_2R_3C_4$
+
+</center>
+
+The above equation shows that the bridges have two variables R<sub>4</sub> and C<sub>4</sub> which appear in one of the two equations and hence both the equations are independent. The circuit quality factor is expressed as 
+
+<center>
+
+$Q = \frac{ωL_1}{R_1} = ωC_4R_4$
+
+</center>
+
+Phasor diagram of Maxwell’s inductance capacitance bridge is shown in the figure below.
+
+<center> 
+
+![circuit](images/circuit5.jpg)
+
+**Fig. 5 Phasor Diagram of Maxwell Inductance Capacitance Bridge**
+
+</center>
+
+### Advantages of the Maxwell’s Bridge:
+The following are the advantages of the Maxwell bridge-
+
+1. The balance equation of the circuit is free from frequency.
+2. Both the balance equations are independent of each other.
+3. The Maxwell’s inductor capacitance bridge is used for the measurement of the high range inductance.
+
+### Disadvantages of the Maxwell’s Bridge:
+The main disadvantages of the bridge are
+
+1. The Maxwell inductor capacitance bridge requires a variable capacitor which is very expensive. Thus, sometimes the standard variable capacitor is used in the bridges.
+2. The bridge is only used for the measurement of medium quality coils.
 
 
-
-R<sub>3</sub> and  L<sub>3</sub> can then be calculated based on the values of the other components:
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To avoid the difficulties associated with determining the precise value of a variable capacitance, sometimes a fixed-value capacitor will be installed and more than one resistor will be made variable. It cannot be used for the measurement of high Q values. It is also unsuited for the coils with low Q values, less than one, because of balance convergence problem. Its use is limited to the measurement of low Q values from 1 to 10.   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The frequency of the AC current used to assess the unknown inductor should match the frequency of the circuit the inductor will be used in - the impedance and therefore the assigned inductance of the component varies with frequency. For ideal inductors, this relationship is linear, so that the inductance value at an arbitrary frequency can be calculated from the inductance value measured at some reference frequency. Unfortunately, for real components, this relationship is not linear, and using a derived or calculated value in place of a measured one can lead to serious inaccuracies.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A practical issue in construction of the bridge is mutual inductance: two inductors in propinquity will give rise to mutual induction: when the magnetic field of one intersects the coil of the other, it will reinforce the magnetic field in that other coil, and vice versa, distorting the inductance of both coils. To minimize mutual inductance, orient the inductors with their axes perpendicular to each other, and separate them as far as is practical. Similarly, the nearby presence of electric motors, chokes and transformers (like that in the power supply for the bridge!) may induce mutual inductance in the circuit components, so locate the circuit remotely from any of these.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The frequency dependence of inductance values gives rise to other constraints on this type of bridge: the calibration frequency must be well below the lesser of the self-resonance frequency of the inductor and the self-resonance frequency of the capacitor,Fr < min(L<sub>srf</sub>,C<sub>srf</sub>)/10. Before those limits are approached, the ESR of the capacitor will likely have significant effect, and have to be explicitly modeled.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For ferromagnetic core inductors, there are additional constraints. There is a minimum magnetization current required to magnetize the core of an inductor, so the current in the inductor branches of the circuit must exceed the minimum, but must not be so great as to saturate the core of either inductor.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The additional complexity of using a Maxwell-Wien bridge over simpler bridge types is warranted in circumstances where either the mutual inductance between the load and the known bridge entities, or stray electromagnetic interference, distorts the measurement results. The capacitive reactance in the bridge will exactly oppose the inductive reactance of the load when the bridge is balanced, allowing the load's resistance and reactance to be reliably determined.
-
+</div>
