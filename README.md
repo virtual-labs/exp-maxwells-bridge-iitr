@@ -4,7 +4,7 @@
 <b>Discipline | <b>Electrical Engineering
 :--|:--|
 <b> Lab | <b> Electrical Measurements Lab
-<b> Experiment|     <b> To find the value of unknown inductance using a Maxwell’s Bridge
+<b> Experiment|     <b>6. To find the value of unknown inductance using a Maxwell’s Bridge
 
 ### About the Experiment 
 

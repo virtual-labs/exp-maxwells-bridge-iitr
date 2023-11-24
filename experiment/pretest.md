@@ -1,42 +1,38 @@
-## Pre-test
+## Pre Test
 #### Please attempt the following questions
-
 
 Q1. Maxwell inductance capacitance bridge can be used for _________.<br>
 
-<b>A   measurement of inductance</b><br> 
-B   measurement of capacitance and inductance<br>
-C   measurement of resistance<br>
-D   measurement of voltage and current<br>  <br>
-  
-    
+a.   measurement of inductance<br> 
+b.   measurement of capacitance and inductance<br>
+c.   measurement of resistance<br>
+d.   measurement of voltage and current<br>  
+      
 Q2. Balance equation for computing the unknown resistance is?<br>
  
-A   R<sub>x</sub> = R<sub>2</sub>/R<sub>1</sub>  
-<b>B   R<sub>x</sub> = R<sub>2</sub> R<sub>3</sub>/R<sub>1</sub></b>  
-C   R<sub>x</sub> = R<sub>3</sub>/R<sub>1</sub>  
-D   R<sub>x</sub> = 1/R<sub>1</sub> <br><br> 
-
-     
+a.   R<sub>1</sub> = R<sub>2</sub>/R<sub>1</sub>  
+b.   R<sub>1</sub> = R<sub>2</sub>*R<sub>3</sub>/R<sub>4</sub>  
+c.   R<sub>1</sub> = R<sub>3</sub>/R<sub>1</sub>  
+d.   R<sub>1</sub> = 1/R<sub>1</sub> <br> 
+    
 Q3. Balance equation for computing the value of the unknown inductance is?<br>
  
-A   L<sub>x</sub> = R<sub>2</sub> R<sub>3</sub>  
-B   L<sub>x</sub> = R<sub>2</sub> C<sub>1</sub>  
-<b>C   L<sub>x</sub> = R<sub>2</sub> R<sub>3</sub> C<sub>1</sub></b>  
-D   L<sub>x</sub> = R<sub>3</sub> C<sub>1</sub><br><br>
-
-     
+a.   L<sub>1</sub> = R<sub>2</sub>R<sub>3</sub>  
+b.   L<sub>1</sub> = R<sub>2</sub>C<sub>4</sub>  
+c.   L<sub>1</sub> = R<sub>2</sub>R<sub>3</sub>C<sub>4</sub>  
+d.   L<sub>1</sub> = R<sub>3</sub>C<sub>4</sub><br>
+    
 Q4. Quality factor of the circuit is given by _________.<br>
 
-A   Q = ωC<sub>1</sub>   
-B   Q = ωR<sub>1</sub>  
-C   Q = ω  
-<b>D   Q = ωR<sub>1</sub> C<sub>1</sub></b><br><br> 
+a.   Q = ωC<sub>1</sub>   
+b.   Q = ωR<sub>1</sub>  
+c.   Q = ω  
+d.   Q = ωR<sub>4</sub>C<sub>4</sub><br> 
 
      
 Q5. What is the significance of capacitors in a Maxwell bridge?
   
-A   they are used to block dc<br>
-B   they are used to block ac<br>
-<b>C   they are cheap</b><br>
-D   they are expensive<br><br>  
+a.   they are used to block dc<br>
+b.   they are used to block ac<br>
+c.   they are cheap<br>
+d.   they are expensive<br> 
