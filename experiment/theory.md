@@ -1,4 +1,11 @@
-## Introduction
+<head>
+
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> 
+  
+</script>
+
+</head>
+### Introduction
 
 <div style="text-align: justify; font-size: 18px;font-family: 'Nunito Sans',sans-serif;">
 A Maxwell bridge is a modification to a Wheatstone bridge used to measure an unknown inductance (usually of low Q value) in terms of calibrated resistance and inductance or resistance and capacitance. When the calibrated components are a parallel resistor and capacitor, the bridge is known as a Maxwell-Wien bridge. It is named for James C. Maxwell, who first described it in 1873.<br><br> 
@@ -41,13 +48,13 @@ At balance,
 
 <center>
 
-$L_1 = \frac{R3}{R4}L2$
+$$L_1 = \frac{R3}{R4}L2$$
 
 </center>
 
 <center>
 
-$R1 = \frac{R3}{R4}(R2+r2)$
+$$R1 = \frac{R3}{R4}(R2+r2)$$
 
 </center>
 
@@ -76,13 +83,13 @@ For balance condition,
 
 <center>
 
-$(R1 + jωL_1) \left (\frac{R4}{1 + jωC_4R_4} \right ) = R2R3$
+$$(R1 + jωL_1) \left (\frac{R4}{1 + jωC_4R_4} \right ) = R2R3$$
 
 </center>
 
 <center>
 
-$R_1R_4 = jωL_1R_4 = R_2R_3 + jωC_4R_4R_2R_3$
+$$R_1R_4 = jωL_1R_4 = R_2R_3 + jωC_4R_4R_2R_3$$
 
 </center>
 
@@ -90,13 +97,13 @@ By separating the real and imaginary equation we get,
 
 <center>
 
-$R_1 = \frac{R_2R_3}{R_4}$
+$$R_1 = \frac{R_2R_3}{R_4}$$
 
 </center>
 
 <center>
 
-$L_1 = R_2R_3C_4$
+$$L_1 = R_2R_3C_4$$
 
 </center>
 
@@ -104,7 +111,7 @@ The above equation shows that the bridges have two variables R<sub>4</sub> and C
 
 <center>
 
-$Q = \frac{ωL_1}{R_1} = ωC_4R_4$
+$$Q = \frac{ωL_1}{R_1} = ωC_4R_4$$
 
 </center>
 
