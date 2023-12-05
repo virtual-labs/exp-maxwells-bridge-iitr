@@ -5,7 +5,7 @@
 </script>
 
 </head>
-### Introduction
+<h3>Introduction</h3>
 
 <div style="text-align: justify; font-size: 18px;font-family: 'Nunito Sans',sans-serif;">
 A Maxwell bridge is a modification to a Wheatstone bridge used to measure an unknown inductance (usually of low Q value) in calibrated resistance and inductance or resistance and capacitance. The bridge is known as a Maxwell-Wien bridge when the calibrated components are a parallel resistor and capacitor. It is named for James C. Maxwell, who first described it in 1873.<br><br> 
@@ -20,7 +20,7 @@ A Maxwell bridge is a modification to a Wheatstone bridge used to measure an unk
 
 </center>
 
-With reference to the picture, in a typical application R<sub>1</sub> and R<sub>4</sub> are known fixed entities, and R<sub>2</sub> and  C<sub>2</sub> are known variable entities. R<sub>2</sub> and  C<sub>2</sub> are adjusted until the bridge is balanced. R<sub>3</sub> and  L<sub>3</sub> can then be calculated based on the values of the other components
+Regarding the picture, in a typical application R<sub>1</sub> and R<sub>4</sub> are known fixed entities, and R<sub>2</sub> and  C<sub>2</sub> are known variable entities. R<sub>2</sub> and  C<sub>2</sub> are adjusted until the bridge is balanced. R<sub>3</sub> and  L<sub>3</sub> can then be calculated based on the values of the other components
 
 ### Types of Maxwell’s Bridge
 Two methods are used for determining the self-inductance of the circuit. They are
@@ -115,7 +115,7 @@ $$Q = \frac{ωL_1}{R_1} = ωC_4R_4$$
 
 </center>
 
-Phasor diagram of Maxwell’s inductance capacitance bridge is shown in the figure below.
+The phasor diagram of Maxwell’s inductance capacitance bridge is shown in the figure below.
 
 <center> 
 
@@ -130,13 +130,13 @@ The following are the advantages of the Maxwell bridge-
 
 1. The balance equation of the circuit is free from frequency.
 2. Both the balance equations are independent of each other.
-3. The Maxwell’s inductor capacitance bridge is used for the measurement of the high range inductance.
+3. Maxwell’s inductor capacitance bridge is used for the measurement of the high-range inductance.
 
 ### Disadvantages of the Maxwell’s Bridge:
 The main disadvantages of the bridge are
 
 1. The Maxwell inductor capacitance bridge requires a variable capacitor which is very expensive. Thus, sometimes the standard variable capacitor is used in the bridges.
-2. The bridge is only used for the measurement of medium quality coils.
+2. The bridge is only used for the measurement of medium-quality coils.
 
 
 </div>
