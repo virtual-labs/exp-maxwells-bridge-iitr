@@ -8,9 +8,9 @@
 ### Introduction
 
 <div style="text-align: justify; font-size: 18px;font-family: 'Nunito Sans',sans-serif;">
-A Maxwell bridge is a modification to a Wheatstone bridge used to measure an unknown inductance (usually of low Q value) in terms of calibrated resistance and inductance or resistance and capacitance. When the calibrated components are a parallel resistor and capacitor, the bridge is known as a Maxwell-Wien bridge. It is named for James C. Maxwell, who first described it in 1873.<br><br> 
+A Maxwell bridge is a modification to a Wheatstone bridge used to measure an unknown inductance (usually of low Q value) in calibrated resistance and inductance or resistance and capacitance. The bridge is known as a Maxwell-Wien bridge when the calibrated components are a parallel resistor and capacitor. It is named for James C. Maxwell, who first described it in 1873.<br><br> 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It uses the principle that the positive phase angle of an inductive impedance can be compensated by the negative phase angle of a capacitive impedance when put in the opposite arm and the circuit is at resonance; i.e., no potential difference across the detector (an AC voltmeter or ammeter)) and hence no current flowing through it. The unknown inductance then becomes known in terms of this capacitance.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; It uses the principle that the positive phase angle of an inductive impedance can be compensated by the negative phase angle of a capacitive impedance when put in the opposite arm and the circuit is at resonance; i.e., no potential difference across the detector (an AC voltmeter or ammeter)) and hence no current flows through it. The unknown inductance then becomes known in terms of this capacitance.<br>
 
 <center> 
 
