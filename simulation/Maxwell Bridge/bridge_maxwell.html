@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Virtual Labs | Maxwell's Bridge</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="jsplumb.min.js"></script>
+
+  <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=AM_CHTML"> </script>
+  <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/MathJax.js?config=AM_CHTML"> </script>
+  <script async="true" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=AM_CHTML"> </script>
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>
+
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <style>
+    #diagram,
+    #toolbox {
+      margin: 20px 0;
+      border-width: 2px;
+      border-style: solid;
+      border-color: black;
+      height: 960px;
+    }
+
+    #toolbox {
+      display: flex;
+      padding: 10px;
+      flex-flow: row wrap;
+      align-content: flex-start;
+    }
+
+    .control {
+      border-color: black;
+      border-radius: 10px;
+      border-width: 2px;
+      border-style: solid;
+      width: 60px;
+      text-align: center;
+      cursor: move;
+      height: fit-content;
+      height: -moz-max-content;
+      background-color: white;
+    }
+
+    #diagram .control {
+      position: absolute;
+    }
+
+    .window {
+      z-index: 20;
+    }
+
+    .jtk-connector {
+      z-index: 4;
+    }
+
+    .jtk-endpoint {
+      z-index: 5;
+    }
+
+    .jtk-overlay {
+      z-index: 6;
+    }
+
+    .custom-menu {
+      z-index: 1000;
+      position: absolute;
+      background-color: #C0C0C0;
+      border: 1px solid black;
+      padding: 0px;
+    }
+
+    #toolbox .control {
+      margin: 10px 5px;
+    }
+
+
+    #instruction {
+      margin: 20px 0px;
+      border-width: 2px;
+      /* border-style: solid;
+      border-color: black; */
+      height: 998px;
+      width: 2000px;
+      top: -19px;
+    }
+
+    #inst {
+      height: 90vh;
+
+    }
+
+
+
+    .black_overlay {
+      display: none;
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      z-index: 1001;
+      -moz-opacity: 0.8;
+      opacity: .80;
+      filter: alpha(opacity=80);
+    }
+
+    .white_content {
+      display: none;
+      position: absolute;
+      top: 10%;
+      left: -148%;
+      width: 137%;
+      height: 70%;
+      padding: 8px;
+      border: 1px solid #808080;
+      background-color: white;
+      z-index: 1002;
+      overflow: auto;
+      box-shadow: 10px 11px 23px #212529;
+    }
+
+
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+
+    }
+
+    #myTable {
+      border: 1px solid black;
+      width: 250px;
+      height: 10%;
+    }
+
+
+    .no-pointer-events {
+      pointer-events: none;
+    }
+
+
+    .slidecontainer {
+      width: 100%;
+    }
+
+    .slider {
+      appearance: none;
+      width: 100%;
+      height: 25px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+    }
+
+    .slider:hover {
+      opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      background: #04AA6D;
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      background: #04AA6D;
+      cursor: pointer;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div style="position: absolute;border: 2px solid black;top: 0px;left: -15px;
+  ">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-2">
+          <h3 style="    position: absolute;
+          border: 2px solid black;
+          width: 323px;
+          text-align: center;background-color: #cb3535;color: white;border-radius: 6px;
+      ">Components</h3>
+          <div id="toolbox" class="justify-content-center" style="    position: absolute;
+          top: 20px;
+          width: 323px;
+          height: 204px;
+      ">
+            <div class="control r"><img src="resistor.png" width="50px" height="60px"></div>
+            <div class="control v"><img src="ac.png" width="50px" height="60px"> </div>
+            <div class="control n"><img src="detector.png" width="50px" height="60px"></div>
+            <div class="control l"><img src="inductor.png" width="50px" height="60px"></div>
+            <h3 style="    position: absolute;
+          border: 2px solid black;
+          width: 323px;
+          text-align: center;background-color: #cb3535;color: white;border-radius: 6px;top: 216px;
+      ">Formulae</h3>
+            <div id="formulae" style="    position: absolute;
+        top: 258px;
+        padding: 12px;border: 2px solid black">
+              <h6>After balancing circuit, equating real part we have:</h6>
+              <b> `frac(R4)(R3) = frac(R2)(R1)`</b><br>
+              <h6>Also, equating imaginary part we have: </h6>
+              `frac(R4)(R3) = frac(L2)(L1("unknown"))`
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <h3 style="    position: absolute;
+          border: 2px solid black;
+          border-radius: 6px;
+          width: 96.4%;
+          text-align: center;right: 0px;background-color: #cb3535;color: white;
+      ">WorkSpace</h3>
+          <div id="diagram" style="    height: 960px; position: absolute;width: 96.4%;top: 20px;right:0px;">
+            <button style="    position: absolute;
+            bottom: 14px;
+            right: 692px;
+            width: 120px;
+    " class="btn btn-danger">Check Circuit</button>
+            <button style="position: absolute;
+    bottom: 14px;
+    right: 553px;
+    width: 120px;
+    " class="btn btn-warning
+    " onclick="window.location.reload()">Reset</button>
+            <button style="    position: absolute;
+    bottom: 14px;
+    right: 414px;
+    width: 120px;
+    " class="btn btn-primary" onclick="window.print()">Print</button>
+            <p style="    position: absolute;
+    top: 8px; right: 9px;"><a href="javascript:void(0)"
+                onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='none'"
+                class="btn btn-danger"><b>Instructions</b></a>
+            </p>
+          </div>
+
+        </div>
+
+        <div class="col-md-3" id="instruction">
+          <div id="inst" class="col-sm">
+
+
+
+            <!-- <p><a href="javascript:void(0)"
+                onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'"><b>Instructions</b></a>
+            </p> -->
+            <div id="light" class="white_content">Maxwell Bridge<br>
+              <img src="maxwell_bridge.png" width="150px" height="150px">
+              <ul>&bull;Pick up four resistances, two inductors and a AC voltage source from the toolbox.</ul><br>
+              <ul>&bull;Connect the elements as shown in the figure to form Maxwell Bridge.</ul><br>
+              <ul>&bull;After making the circuit click on check circuit button to check the connections.</ul>
+              <ul>&bull;Now enter the values of resistors and AC voltage source and click on the submit button.</ul><br>
+              <ul>&bull;Repeat the experiment until the bridge gets balanced.</ul><br>
+              <ul>&bull;After balancing the bridge, balanced bridge will popup.</ul><br>
+              <a href="javascript:void(0)"
+                onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"
+                class="btn btn-outline-danger" style="    position: absolute;
+              top: 20px;
+              right: 20px;"><span style="    padding-top: 6px;" class="material-symbols-outlined">
+                  close
+                </span></a>
+            </div>
+            <div id="fade" class="black_overlay"></div>
+
+            <!-- <p><a href="javascript:void(0)"
+                onclick="document.getElementById('light2').style.display='block';document.getElementById('fade').style.display='block'"><b>Observations</b></a>
+            </p> -->
+            <div id="light2" class="white_content"><b>Observation Table</b><br>
+              <table id="myTable">
+                <tr>
+                  <th>R1</th>
+                  <th>R2</th>
+                  <th>R3</th>
+                  <th>R4</th>
+                  <th>Voltage</th>
+                  <th>`L`</th>
+                </tr>
+              </table>
+              <a href="javascript:void(0)"
+                onclick="document.getElementById('light2').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
+            </div>
+            <div id="fade" class="black_overlay"></div>
+
+
+
+
+            <!-- <p><a href="javascript:void(0)"
+                onclick="document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'"><b>Formulae</b></a>
+            </p> -->
+            <div id="light1" class="white_content"><b>Maxwell Bridge</b><br>
+
+
+
+
+              <div id="formulae">
+
+
+                <h6>After balancing circuit, equating real part we have:</h6>
+                <b> `frac(R4)(R3) = frac(R2)(R1)`</b><br>
+                <h6>Also, equating imaginary part we have: </h6>
+                `frac(R4)(R3) = frac(L2)(L1("unknown"))`
+              </div>
+
+
+              <a href="javascript:void(0)"
+                onclick="document.getElementById('light1').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
+            </div>
+            <div id="fade" class="black_overlay"></div>
+            <h3 style="    position: relative;
+            border: 2px solid black;
+            width: 437px;
+            text-align: center;background-color: #cb3535;color: white;border-radius: 6px;right: 0px;
+        ">Calculations</h3>
+
+
+
+
+<div id="mydiv" style="display:block;border: 2px solid black; padding: 20px;width: 90%;   position: absolute;
+top: 40px;right: 34px;">
+              <br>
+              <p>L2= 0.01 mH</p>
+              <form action="#" onsubmit="yourJsFunction();return false">
+                <div class="slidecontainer">
+
+                  &nbsp;R1 : 1Ω
+                  <!-- <span class="MathJax" id="MathJax-Element-23-Frame" tabindex="0" data-mathml="<math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;><mstyle displaystyle=&quot;true&quot;><mo>&amp;#x2126;</mo></mstyle></math>" role="presentation" style="position: relative;"><nobr aria-hidden="true"><span class="math" id="MathJax-Span-134" style="width: 0.792em; display: inline-block;"><span style="display: inline-block; position: relative; width: 0.731em; height: 0px; font-size: 103%;"><span style="position: absolute; clip: rect(1.217em, 1000.67em, 2.309em, -999.997em); top: -2.121em; left: 0em;"><span class="mrow" id="MathJax-Span-135"><span class="mstyle" id="MathJax-Span-136"><span class="mrow" id="MathJax-Span-137"><span class="mo" id="MathJax-Span-138" style="font-family: MathJax_Main;">Ω</span></span></span></span><span style="display: inline-block; width: 0px; height: 2.127em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.059em; border-left: 0px solid; width: 0px; height: 0.878em;"></span></span></nobr><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mstyle displaystyle="true"><mo>Ω</mo></mstyle></math></span></span>
+            <script type="math/asciimath" id="MathJax-Element-23">Ω</script>
+            &nbsp;  -->
+
+
+                  <input type="range" min="1" max="1000" value="1" id="myRange1"
+                    onchange="data1.value=this.value; document.getElementById('r1_tag0').innerHTML='R1 = '+this.value+'&nbsp;Ω'"
+                    style="width: 110px">&nbsp; 1 KΩ
+                  <input type="number" name="data1" id="data1"
+                    onchange="myRange1.value=this.value; document.getElementById('r1_tag0').innerHTML='R1 = '+this.value+'&nbsp;Ω'"
+                    style="width: 60px; height:20px">
+
+
+
+
+
+                </div>
+
+                <div class="slidecontainer">
+                  &nbsp;R2 : 1Ω
+                  <input type="range" min="1" max="1000" value="1" id="myRange2"
+                    onchange="data2.value=this.value; document.getElementById('r1_tag1').innerHTML='R2 = '+this.value+'&nbsp;Ω'"
+                    style="width: 110px">&nbsp; 1 KΩ
+                  <input type="number" name="data2" id="data2"
+                    onchange="myRange2.value=this.value; document.getElementById('r1_tag1').innerHTML='R2 = '+this.value+'&nbsp;Ω'"
+                    style="width: 60px; height:20px">
+                </div>
+
+                <div class="slidecontainer">
+                  &nbsp;R3 : 1Ω
+                  <input type="range" min="1" max="1000" value="1" id="myRange"
+                    onchange="data6.value=this.value; document.getElementById('r1_tag2').innerHTML='R3 = '+this.value+'&nbsp;Ω'"
+                    style="width: 110px">&nbsp; 1 KΩ
+                  <input type="number" name="data6" id="data6"
+                    onchange="myRange.value=this.value; document.getElementById('r1_tag2').innerHTML='R3 = '+this.value+'&nbsp;Ω'"
+                    style="width: 60px; height:20px">
+                </div>
+
+
+                <div class="slidecontainer">
+                  &nbsp;R4 : 1Ω
+                  <input type="range" min="1" max="1000" value="1" id="myRange3"
+                    onchange="data4.value=this.value; document.getElementById('r1_tag3').innerHTML='R4 = '+this.value+'&nbsp;Ω'"
+                    style="width: 110px">&nbsp; 1 KΩ
+                  <input type="number" name="data4" id="data4"
+                    onchange="myRange3.value=this.value; document.getElementById('r1_tag3').innerHTML='R4 = '+this.value+'&nbsp;Ω'"
+                    style="width: 60px; height:20px">
+                </div>
+
+                <p>V: <input type="number" id="data5" style="width: 60px;">
+                  f: <input type="number" id="data7" style="width: 60px;">
+                </p>
+
+
+
+                <input type="submit" />
+
+              </form>
+
+              <button onClick="window.location.reload();">Reset</button>
+              <input type="button" value="Print Report" onClick="window.print()">
+            </div>
+            <h3 style="    position: relative;
+            border: 2px solid black;
+            width: 458px;
+            text-align: center;background-color: #cb3535;color: white;border-radius: 6px;right: 10px;top: 332px;
+        ">Observation Table</h3>
+           <table id="myTable" style="    position: relative;
+           top: 362px;
+           border: 2px solid black!important;
+           right: 10px;
+       width: 102%;
+           height: 50px;text-align: center;">
+            <tr>
+              <th>R1</th>
+              <th>R2</th>
+              <th>R3</th>
+              <th>R4</th>
+              <th>Voltage</th>
+              <th>`L`</th>
+            </tr>
+          </table>
+
+
+
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <script>
+
+
+      const mydiv = document.getElementById('mydiv');
+      var data4 = 1; let l_ratio = 1;
+
+
+      function yourJsFunction() {
+        //mydiv.style.display="none";
+
+        var data1 = document.getElementById("data1").value;
+        var data2 = document.getElementById("data2").value;
+        var data4 = document.getElementById("data4").value;
+        var data5 = document.getElementById("data5").value;
+        var data3 = document.getElementById("data6").value;
+
+
+        if (data1 == "" || data2 == "" || data4 == "" || data5 == "") {
+          swal("Fill empty values");
+
+          return;
+        }
+
+
+
+
+
+
+        if (data1 <= 0 || data2 <= 0 || data4 <= 0 || data5 <= 0) {
+          swal("Invalid Values");
+
+          return;
+        }
+        // Create a new table row for each input value
+
+        var row = document.createElement("tr");
+        var cur = l_ratio * 0.01;
+
+
+
+
+
+
+
+        const arr = [data1, data2, data3, data4, data5];
+
+        console.log(data3);
+
+        if (l_ratio == data4 / data3 && l_ratio == data2 / data1) {
+          // document.getElementById("light1").innerHTML+=`<h4>Bridge is Balanced</h4>
+          // <h5>Equivalent Resistance:</h5><b> `+ frac(1)(r1+r3)+ ` </b>`;
+          swal("Balanced Bridge");
+          for (var i = 1; i <= 5; i++) {
+            // Get the value of the current input field
+            var data = arr[i - 1];
+
+            // Create a new table row element
+
+            // Create a new table data element
+            var cell = document.createElement("td");
+            cell.innerHTML = data;
+
+            // Add the table data to the table row
+            row.appendChild(cell);
+
+            // Add the table row to the table
+            document.getElementById("myTable").appendChild(row);
+          }
+
+
+          var cell = document.createElement("td");
+          cell.innerHTML = cur + "mH";
+          row.appendChild(cell);
+          document.getElementById("myTable").appendChild(row);
+
+
+        }
+
+
+        else if (l_ratio == data4 / data3 || l_ratio == data2 / data1) {
+          var audio = new Audio('audio2_detector.mp3');
+          audio.play();
+          audio.volume = 0.2;
+          swal("Unbalanced");
+          audio.addEventListener("canplaythrough", function () {
+            setTimeout(function () {
+              audio.pause();
+            },
+              5000);
+          }, false);
+
+        }
+
+        else {
+          var audio = new Audio('audio1_detector.mp3');
+          audio.play();
+          audio.volume = 0.1;
+          swal("Unbalanced");
+          audio.addEventListener("canplaythrough", function () {
+            setTimeout(function () {
+              audio.pause();
+            },
+              3000);
+          }, false);
+
+        }
+      }
+
+
+
+
+      var count1 = 1, count2 = 1, count3 = 1, count4 = 1;
+      // https://stackoverflow.com/a/2117523
+      function uuidv4() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+      }
+      instance = jsPlumb.getInstance({});
+      instance.setContainer("diagram");
+      instance.bind("ready", function () {
+        instance.registerConnectionTypes({
+          "red-connection": {
+            paintStyle: { stroke: "orange", strokeWidth: 5 },
+            hoverPaintStyle: { stroke: "orange", strokeWidth: 5 },
+            connector: "Flowchart"
+          }
+        });
+        /*instance.draggable("control1", {"containment": true});
+        instance.draggable("control2", {"containment": true})
+        instance.addEndpoint("control1", {
+          endpoint: "Dot",  // rectangle, blank, image
+          anchor: ["RightMiddle"],
+          isSource: true,
+          connectionType: "red-connection"
+        });
+        instance.addEndpoint("control2", {
+          endpoint: "Dot",
+          anchor: ["LeftMiddle"],
+          isTarget: true,
+          connectionType: "red-connection"
+        });*/
+
+        // https://stackoverflow.com/a/4502207
+
+        $(document).bind("click", function (event) {
+          $("div.custom-menu").remove();
+        });
+
+        $("body").on("contextmenu", "#diagram .control", function (event) {
+          event.preventDefault();
+          window.selectedControl = $(this).attr("id");
+          console.log(window.selectedControl);
+          $("<div class='custom-menu'><button class='delete-control'>Delete control</button></div>")
+            .appendTo("body")
+            .css({ top: event.pageY + "px", left: event.pageX + "px" });
+
+
+
+
+
+
+
+
+        });
+
+
+
+        $("body").on("click", ".delete-control", function (event) {
+          instance.remove(window.selectedControl);
+
+        });
+
+        $("#toolbox .control").draggable({
+          helper: "clone",
+          containment: ".body",
+          appendTo: "#diagram"
+        });
+
+
+        $("#diagram").droppable({
+          drop: function (event, ui) {
+            var id;
+            var clone = $(ui.helper).clone(true);
+            var s = clone.attr("class");
+            if (s[8] == 'r') {
+              id = s[8] + count1.toString();
+              count1++;
+            }
+            else if (s[8] == 'v') {
+              id = s[8] + count2.toString();
+              count2++;
+            }
+            else if (s[8] == 'n') {
+              id = s[8] + count3.toString();
+              count3++;
+            }
+            else if (s[8] == 'l') {
+              id = s[8] + count4.toString();
+              count4++;
+            }
+
+
+            clone.attr("id", id);
+            clone.appendTo(this);
+
+            instance.draggable(id, { containment: true });
+
+
+            if (id[0] == 'v') {
+
+              instance.addEndpoint(id, {
+                endpoint: ["Dot", { radius: 6 }], maxConnections: 2,
+                anchor: ["Left"],
+                isSource: true, paintStyle: { fill: "red" },
+                connectionType: "red-connection"
+              });
+
+              instance.addEndpoint(id, {
+                endpoint: ["Dot", { radius: 6 }], maxConnections: 2,
+                anchor: ["Right"],
+                isTarget: true,
+                connectionType: "red-connection"
+              });
+
+            }
+            else if (id[0] == 'n') {
+              instance.addEndpoint(id, {
+                endpoint: ["Dot", { radius: 6 }],
+                anchor: ["Left"],
+                isTarget: true,
+                connectionType: "red-connection"
+              });
+
+              instance.addEndpoint(id, {
+                endpoint: ["Dot", { radius: 6 }],
+                anchor: ["Right"], paintStyle: { fill: "red" },
+                isSource: true,
+                connectionType: "red-connection"
+              });
+
+            }
+            else {
+              instance.addEndpoint(id, {
+                endpoint: ["Dot", { radius: 6 }], maxConnections: 2,
+                anchor: ["Right"], paintStyle: { fill: "red" },
+                isSource: true,
+                connectionType: "red-connection"
+              });
+
+              instance.addEndpoint(id, {
+                endpoint: ["Dot", { radius: 6 }], maxConnections: 2,
+                anchor: ["Left"],
+                isTarget: true,
+                connectionType: "red-connection"
+              });
+            }
+          }
+        })
+
+      });
+
+
+
+
+
+
+      document.getElementsByTagName("button")[0].onclick = contagem;
+
+      function contagem() {
+
+        var allConnections = instance.getConnections({
+          //scope: "someScope"
+        });
+        const Tid = []; const Sid = [];
+        //alert(allConnections.length);
+        for (var i = 0; i < allConnections.length; i++) {
+          var target = allConnections[i].targetId;
+          var source = allConnections[i].sourceId;
+          Tid[i] = target;
+          Sid[i] = source;
+        }
+        const set1 = new Set();
+        for (var i = 0; i < Tid.length; i++) {
+          set1.add(Tid[i]);
+        }
+        const arr = [...set1].sort();
+        const set_1 = new Set(arr);
+        const set2 = new Set();
+        for (var i = 0; i < Sid.length; i++) {
+          set2.add(Sid[i]);
+        }
+        const arr1 = [...set2].sort(); const arr_r = []; const arr_l = [];
+        var c_r = 0, c_v = 0, c_l = 0, c_n = 0, s_v, j = 0, k = 0;
+        for (var i = 0; i < arr1.length; i++) {
+          if (arr1[i][0] == 'r') { c_r++; arr_r[j] = arr1[i]; j++; }
+          else if (arr1[i][0] == 'v') { c_v++; s_v = arr1[i]; }
+          else if (arr1[i][0] == 'l') { c_l++; arr_l[k] = arr1[i]; k++; }
+          else
+            c_n++;
+        }
+        const set_2 = new Set(arr1);
+        console.log(arr_r);
+        if (Tid.length != 10 || Sid.length != 10 || !setsAreEqual(set_1, set_2) || c_r != 4 || c_v != 1 || c_n != 1 || c_l != 2) {
+          alert("Wrong Connections");
+        }
+        else {
+          var amp = {};
+          for (var i = 0; i < Sid.length; i++) {
+            amp[Sid[i]] = amp[Sid[i]] || [];
+            amp[Sid[i]].push(Tid[i]);
+          }
+          for (var i = 0; i < Tid.length; i++) {
+            amp[Tid[i]] = amp[Tid[i]] || [];
+            amp[Tid[i]].push(Sid[i]);
+          }
+          console.log(amp);
+          const s_element = new Set();
+          var s = amp[arr[2]][0];
+          s_element.add(s);
+          const r_pos = [], l_pos = [];
+          if (s[0] != 'r' || amp[s].length != 3 || (amp[s][0] != arr[7] && amp[s][0][0] != 'l')) {
+            alert("Wrong Connection");
+          }
+          else {
+            if (amp[s][0] == arr[7]) {
+
+              var r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 30;
+              var r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 225;
+              r_pos[2] = [r_top, r_left];
+
+              if (amp[s][2] != arr[2])
+                s = amp[s][2];
+              else
+                s = amp[s][1];
+
+              if (s[0] != 'r' || amp[s].length != 2 || amp[s][1][0] != 'l') {
+                alert("Wrong Connection");
+              }
+              else {
+
+                r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 30;
+                r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 225;
+                r_pos[0] = [r_top, r_left];
+
+
+
+
+                s = amp[s][1];
+                if (s[0] != 'l' || amp[s].length != 2 || amp[s][1] != arr[7]) {
+                  alert("Wrong Connection");
+                }
+                else {
+
+                  r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 30;
+                  r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 225;
+                  l_pos[0] = [r_top, r_left];
+
+
+                  s = amp[arr[2]][1];
+                  if (s[0] != 'r' || amp[s].length != 3 || amp[s][2][0] != 'l') {
+                    alert("Wrong Connection");
+                  }
+                  else {
+
+                    r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 30;
+                    r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 225;
+                    r_pos[1] = [r_top, r_left];
+
+
+                    s = amp[s][2];
+                    if (s[0] != 'l' || amp[s].length != 2 || amp[s][1] != arr[7]) {
+                      alert("Wrong Connection");
+                    }
+
+                    else {
+
+                      r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 30;
+                      r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 225;
+                      l_pos[1] = [r_top, r_left];
+
+
+
+
+
+                      if (amp[amp[s][0]][1] != arr[2])
+                        s = amp[amp[s][0]][1];
+                      else
+                        s = amp[amp[s][0]][0];
+                      if (s[0] != 'r' || amp[s].length != 2 || amp[s][0] != arr[7]) {
+                        alert("Wrong Connection");
+                      }
+
+                      else {
+
+                        r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 30;
+                        r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 225;
+                        r_pos[3] = [r_top, r_left];
+
+
+                        alert("Right Connections...Go Ahead!!");
+
+                        l_ratio = Math.max(Math.floor((Math.random() * 5) + 1), 1);
+                        console.log(l_ratio);
+
+
+
+
+
+
+                        var v_top = document.querySelector('#' + s_v + '').getBoundingClientRect().top + 30;
+                        var v_left = document.querySelector('#' + s_v + '').getBoundingClientRect().left - 250;
+
+                        $("<div id='abcd' style = 'position: absolute;top:" + v_top + "px ; left:" + v_left + "px ;'><b>+  V,f  -</b></div>")
+                          .appendTo("#diagram");
+
+
+                        for (var i = 0; i < 4; i++) {
+                          $("<div id='r1_tag' style = 'position: absolute;top:" + r_pos[i][0] + "px ; left:" + r_pos[i][1] + "px ;'><b>R" + (i + 1) + "</b></div>")
+                            .appendTo("#diagram");
+                        }
+
+
+                        $("<div id='r1_tag' style = 'position: absolute;top:" + l_pos[0][0] + "px ; left:" + l_pos[0][1] + "px ;'><b>L" + 1 + "(unknown)</b></div>")
+                          .appendTo("#diagram");
+                        $("<div id='r1_tag' style = 'position: absolute;top:" + l_pos[1][0] + "px ; left:" + l_pos[1][1] + "px ;'><b>L" + 2 + "</b></div>")
+                          .appendTo("#diagram");
+
+
+
+
+                        mydiv.style.display = "block";
+
+                        var div1 = document.getElementById("diagram");
+                        var div2 = document.getElementById("toolbox");
+
+                        div1.classList.add("no-pointer-events");
+                        div2.classList.add("no-pointer-events");
+
+
+                      }
+
+
+
+
+                    }
+                  }
+                }
+
+              }
+
+
+            }
+
+            else {
+
+              r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 50;
+              r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 225;
+              r_pos[0] = [r_top, r_left];
+
+
+              if (amp[s][2] != arr[2])
+                s = amp[s][2];
+              else
+                s = amp[s][1];
+
+              if (s[0] != 'r' || amp[s].length != 2 || amp[s][1] != arr[7]) {
+                alert("Wrong Connection");
+              }
+              else {
+
+                r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 50;
+                r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 225;
+                r_pos[2] = [r_top, r_left];
+
+
+
+                s = amp[arr[2]][1];
+                if (s[0] != 'r' || amp[s].length != 3 || amp[s][2] != arr[7]) {
+                  alert("Wrong Connection");
+                }
+                else {
+
+                  r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 50;
+                  r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 225;
+                  r_pos[3] = [r_top, r_left];
+
+
+
+
+
+                  if (amp[s][0] != arr[2])
+                    s = amp[s][0];
+                  else
+                    s = amp[s][1];
+
+                  if (s[0] != 'r' || amp[s].length != 2 || amp[s][0][0] != 'l') {
+                    alert("Wrong Connection");
+                  }
+                  else {
+
+                    r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 50;
+                    r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 225;
+                    r_pos[1] = [r_top, r_left];
+
+
+
+
+                    s = amp[s][0];
+                    if (s[0] != 'l' || amp[s].length != 2 || amp[s][0] != arr[7]) {
+                      alert("Wrong Connection");
+                    }
+
+                    else {
+
+                      r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 50;
+                      r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 225;
+                      l_pos[1] = [r_top, r_left];
+
+
+
+
+                      s = amp[amp[arr[2]][0]][0];
+                      if (s[0] != 'l' || amp[s].length != 2 || amp[s][0] != arr[7]) {
+                        alert("Wrong Connection");
+                      }
+                      else {
+
+                        r_top = document.querySelector('#' + s + '').getBoundingClientRect().top + 50;
+                        r_left = document.querySelector('#' + s + '').getBoundingClientRect().left - 225;
+                        l_pos[0] = [r_top, r_left];
+
+
+
+
+                        alert("Right Connections...Go Ahead!!");
+
+                        var v_top = document.querySelector('#' + s_v + '').getBoundingClientRect().top + 50;
+                        var v_left = document.querySelector('#' + s_v + '').getBoundingClientRect().left - 250;
+
+                        $("<div id='abcd' style = 'position: absolute;top:" + v_top + "px ; left:" + v_left + "px ;'><b>+ V,f -</b></div>")
+                          .appendTo("#diagram");
+
+
+
+                        for (var i = 0; i < 4; i++) {
+                          $("<div id='r1_tag' style = 'position: absolute;top:" + r_pos[i][0] + "px ; left:" + r_pos[i][1] + "px ;'><b>R" + (i + 1) + "</b></div>")
+                            .appendTo("#diagram");
+                        }
+
+
+                        $("<div id='r1_tag' style = 'position: absolute;top:" + l_pos[0][0] + "px ; left:" + l_pos[0][1] + "px ;'><b>L" + 1 + "(unknown)</b></div>")
+                          .appendTo("#diagram");
+                        $("<div id='r1_tag' style = 'position: absolute;top:" + l_pos[1][0] + "px ; left:" + l_pos[1][1] + "px ;'><b>L" + 2 + "</b></div>")
+                          .appendTo("#diagram");
+
+
+
+                        mydiv.style.display = "block";
+
+                        var div1 = document.getElementById("diagram");
+                        var div2 = document.getElementById("toolbox");
+
+                        div1.classList.add("no-pointer-events");
+                        div2.classList.add("no-pointer-events");
+
+
+
+
+                      }
+                    }
+
+
+                  }
+
+
+
+                }
+
+
+
+
+
+              }
+
+            }
+
+          }
+
+
+        }
+
+
+        //jsPlumb.removeAllEndpoints("item_input");
+      }
+      function setsAreEqual(a, b) {
+        if (a.size !== b.size) {
+          return false;
+        }
+
+        return Array.from(a).every(element => {
+          return b.has(element);
+        });
+      }
+
+    </script>
+  </div>
+</body>
+
+</html>
